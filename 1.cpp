@@ -1,38 +1,34 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-int main()
-{
-    vector<int>nums={1, 1, 1, 1,0,0};
-    int low=0,high=nums.size()-1,mid;
-    if(nums[nums.size()-1]==1)
-    {
-        cout<<"No.of 0's : 0"<<endl;
-    }else if(nums[0]==0){
-        cout<<"No.of 0's : "<<nums.size();
-    }else{
-        while(low<=high)
-        {
-            mid=(low+high)/2;
-            if(nums[mid]==0)
-            {
-                if(nums[mid-1]==1)
-                {
-                    break;
-                }else{
-                    high=mid;
-                }
-            }else{
-                if(nums[mid+1]==0)
-                {
-                    mid=mid+1;
-                    break;
-                }else{
-                    low=mid;
-                }
-            }
-        }
-        cout<<"No.of 0's : "<<nums.size()-mid<<endl;
-        
-    }
+int count(vector<int>  &arr){
+	int low=0;
+	int high= arr.size()-1;
+	int index =-1;
+	while(low<=high){
+	 	int mid = (high + low)/2;
+	 	
+	 	if (arr[mid]==0){
+	 		index= mid;
+	 	high=mid -1;
+	 	}else{
+	 	
+	 	low = mid+1;
+	}
+	}
+	 
+	 if(index==-1){
+	 	return 0;
+	 }
+	 
+	  return arr.size() - index;
+}
+	
+
+
+
+int main(){
+	vector<int> arr={1,1,1,0,0,0,0,0};
+	int c=count(arr);
+	cout<<"no. of zero's is "<<c;
 }
